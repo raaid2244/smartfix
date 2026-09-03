@@ -102,7 +102,7 @@ export default function Navbar() {
             <Link to="/" className="flex items-center gap-4 group">
               <div className={`transition-all duration-500 overflow-hidden flex items-center justify-center translate-x-1.5 group-hover:scale-105 ${
                 scrolled 
-                  ? 'w-0 h-0 opacity-0 opacity-0 pointer-events-none -ml-4' 
+                  ? 'w-9 h-9 sm:w-10 sm:h-10 opacity-100' 
                   : 'w-12 h-12 sm:w-14 sm:h-14 opacity-100'
               }`}>
                 <img 

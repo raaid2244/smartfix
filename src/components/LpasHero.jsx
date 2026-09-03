@@ -30,13 +30,11 @@ export default function LpasHero() {
   }, []);
 
   const heroTitle = (
-    <div className={`flex flex-col items-center justify-center text-center px-4 w-full transition-opacity duration-150 ${isScrolled ? 'opacity-0' : 'opacity-100'}`}>
-      <div className="w-full max-w-6xl mb-4 flex flex-col md:flex-row items-center justify-center gap-6 md:gap-10">
-        <div className="flex items-center justify-center md:translate-x-16">
-          <img src={logoNew} alt="Smart Fix Solutions Logo" className="w-24 md:w-32 lg:w-40 h-auto object-contain" />
-        </div>
+    <div className={`flex flex-col items-center justify-center px-4 w-full transition-opacity duration-150 ${isScrolled ? 'opacity-0' : 'opacity-100'}`}>
+      <div className="flex flex-col md:flex-row items-center justify-center gap-4 md:gap-8 mb-2">
+        <img src={logoNew} alt="Smart Fix Solutions Logo" className="w-24 md:w-32 lg:w-40 h-auto object-contain" />
         
-        <div className="flex-1 w-full flex justify-center">
+        <div className="flex flex-col items-center justify-center">
           <StrokeText
             text="SMART FIX SOLUTIONS"
             strokeColor="#94a3b8" 
@@ -51,13 +49,13 @@ export default function LpasHero() {
             fontSize={72} 
             fontWeight={700}
             letterSpacing={5} 
-            className="font-montserrat w-full text-center md:text-left"
+            className="font-montserrat text-center"
           />
+          <p className="text-sm md:text-lg text-slate-400 font-mono tracking-widest uppercase font-bold text-center mt-2 -ml-6 md:-ml-12">
+            ENTERPRISE SECURITY & NETWORK
+          </p>
         </div>
       </div>
-      <p className="text-sm md:text-lg text-slate-400 font-mono tracking-widest uppercase font-bold text-center mt-2">
-        ENTERPRISE SECURITY & NETWORK
-      </p>
     </div>
   );
 
