@@ -73,8 +73,8 @@ const ScrollExpand = ({
     const r = c.startRadius + (c.endRadius - c.startRadius) * e;
     frame.style.clipPath = `inset(${iy}% ${ix}% ${iy}% ${ix}% round ${r}px)`;
 
-    // Fade in frame based on scroll progress (0 to 0.05)
-    const frameOp = smoothstep(0, 0.05, p);
+    // Fade in frame based on scroll progress (delayed fade in)
+    const frameOp = smoothstep(0.08, 0.25, p);
     frame.style.opacity = `${frameOp}`;
 
     media.style.transform = `scale(${c.mediaZoom + (1 - c.mediaZoom) * e})`;
