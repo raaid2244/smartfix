@@ -185,6 +185,17 @@ export default function IndustriesSection() {
                     </div>
                   </div>
 
+                  {/* Mobile inline image thumbnail — hidden on lg+ */}
+                  <div className={`lg:hidden overflow-hidden transition-all duration-500 ease-in-out ${
+                    isActive ? 'max-h-[200px] opacity-100 mt-3' : 'max-h-0 opacity-0 mt-0'
+                  }`}>
+                    <div className="relative rounded-xl overflow-hidden h-[180px]">
+                      <img src={item.img} alt={item.name} className="w-full h-full object-cover" />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
+                      <span className="absolute bottom-3 left-3 px-2 py-0.5 bg-blue-600/90 text-white text-[9px] font-mono font-bold tracking-widest uppercase rounded">{item.tag}</span>
+                    </div>
+                  </div>
+
                   {/* Right Arrow (Active) */}
                   <div className={`transition-all duration-300 hidden xl:block ${isActive ? 'opacity-100 translate-x-0 text-blue-600' : 'opacity-0 -translate-x-2'}`}>
                     <ArrowRight className="w-5 h-5" />
@@ -194,8 +205,8 @@ export default function IndustriesSection() {
             })}
           </div>
 
-          {/* Column 2: Image Showcase (Sticky) */}
-          <div className="relative z-20 h-[500px] lg:h-[calc(100vh-200px)] min-h-[500px] lg:sticky lg:top-[120px] self-start image-showcase opacity-0 scale-95 rounded-3xl overflow-hidden shadow-2xl bg-slate-900 border border-slate-200">
+          {/* Column 2: Image Showcase (Sticky) — desktop only */}
+          <div className="hidden lg:block relative z-20 lg:h-[calc(100vh-200px)] min-h-[500px] lg:sticky lg:top-[120px] self-start image-showcase opacity-0 scale-95 rounded-3xl overflow-hidden shadow-2xl bg-slate-900 border border-slate-200">
             {/* The Images */}
             {companyInfo.industries.items.map((item, idx) => {
               const isActive = activeRow === idx;
@@ -267,6 +278,17 @@ export default function IndustriesSection() {
                       <span className={`text-[9px] xl:text-[10px] font-mono tracking-widest uppercase mt-0.5 block transition-colors ${isActive ? 'text-slate-500' : 'text-slate-400'}`}>
                         {item.tag}
                       </span>
+                    </div>
+                  </div>
+
+                  {/* Mobile inline image thumbnail — hidden on lg+ */}
+                  <div className={`lg:hidden overflow-hidden transition-all duration-500 ease-in-out ${
+                    isActive ? 'max-h-[200px] opacity-100 mt-3' : 'max-h-0 opacity-0 mt-0'
+                  }`}>
+                    <div className="relative rounded-xl overflow-hidden h-[180px]">
+                      <img src={item.img} alt={item.name} className="w-full h-full object-cover" />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
+                      <span className="absolute bottom-3 left-3 px-2 py-0.5 bg-blue-600/90 text-white text-[9px] font-mono font-bold tracking-widest uppercase rounded">{item.tag}</span>
                     </div>
                   </div>
 

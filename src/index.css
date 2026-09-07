@@ -403,3 +403,30 @@
   opacity: 1;
 }
 
+/* ─── Industries Hero — Responsive heading size ─────────────────────────────
+   Mobile-first: scales font size up at each breakpoint.
+   Desktop (≥1024px) preserves the original clamp exactly.
+   ─────────────────────────────────────────────────────────────────────────── */
+.ind-hero-title {
+  /* 320px–479px: starts at 2rem, grows with viewport, caps at 3rem */
+  font-size: clamp(2rem, 9.5vw, 3rem);
+}
+@media (min-width: 480px) {
+  .ind-hero-title {
+    /* 480px–767px */
+    font-size: clamp(2.4rem, 8vw, 3.6rem);
+  }
+}
+@media (min-width: 768px) {
+  .ind-hero-title {
+    /* 768px–1023px (tablet) */
+    font-size: clamp(2.8rem, 5.5vw, 4.5rem);
+  }
+}
+@media (min-width: 1024px) {
+  .ind-hero-title {
+    /* ≥1024px desktop — exact original value */
+    font-size: clamp(3.2rem, 5.5vw, 5.5rem);
+  }
+}
+

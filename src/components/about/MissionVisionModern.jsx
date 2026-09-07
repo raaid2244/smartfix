@@ -46,7 +46,7 @@ export default function MissionVisionModern() {
       <div className="max-w-[1600px] mx-auto">
         
         {/* Section Intro */}
-        <div className="flex flex-col md:flex-row justify-between items-end mb-12 lg:mb-16 gap-8">
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 lg:mb-16 gap-8">
           <RevealGroup className="flex-1">
             <div className="mb-6 section-eyebrow">
               <div className="inline-flex items-center gap-3 text-xs font-mono font-bold text-cyan-400 tracking-[0.2em] uppercase">
@@ -58,7 +58,7 @@ export default function MissionVisionModern() {
               THE <span className="logo-text-gradient">CORE</span>
             </RevealHeading>
           </RevealGroup>
-          <RevealGroup className="max-w-xl text-right">
+          <RevealGroup className="max-w-xl text-left md:text-right">
             <p className="text-lg md:text-xl text-slate-400 font-medium leading-relaxed section-paragraph">
               {missionVision.intro}
             </p>
@@ -80,7 +80,7 @@ export default function MissionVisionModern() {
             style={{
               flex: hoveredPanel === 'mission' ? 1.6 : hoveredPanel === 'vision' ? 0.4 : 1,
             }}
-            className={`relative flex flex-col justify-between p-8 lg:p-16 border-b lg:border-b-0 lg:border-r border-white/10 overflow-hidden cursor-pointer group transition-all duration-500 ease-[cubic-bezier(0.25,1,0.5,1)] ${
+            className={`relative flex flex-col justify-between p-6 lg:p-16 border-b lg:border-b-0 lg:border-r border-white/10 overflow-hidden cursor-pointer group transition-all duration-500 ease-[cubic-bezier(0.25,1,0.5,1)] ${
               hoveredPanel === 'vision' ? 'opacity-50' : 'opacity-100'
             }`}
           >
@@ -92,21 +92,21 @@ export default function MissionVisionModern() {
             />
 
             {/* Top Content */}
-            <div className="relative z-10 flex items-start justify-between">
+            <div className="relative z-10 flex items-center lg:items-start justify-center lg:justify-between">
               <div className="flex items-center gap-4">
-                <h3 className="text-3xl lg:text-5xl font-black tracking-[0.05em] uppercase text-white drop-shadow-lg">
+                <h3 className="text-3xl lg:text-5xl font-black tracking-[0.05em] uppercase text-white drop-shadow-lg text-center lg:text-left">
                   MISSION
                 </h3>
               </div>
             </div>
 
             <div 
-              className={`relative z-10 mt-16 lg:mt-0 transition-all duration-500 ease-out ${
+              className={`relative z-10 mt-6 lg:mt-0 flex flex-col items-center lg:items-start transition-all duration-500 ease-out ${
                 hoveredPanel === 'vision' ? 'opacity-30 translate-y-5' : 'opacity-100 translate-y-0'
               }`}
             >
-              <div className="w-12 h-[2px] bg-cyan-400/80 mb-8 transform origin-left group-hover:scale-x-150 transition-transform duration-500" />
-              <p className="text-2xl lg:text-3xl xl:text-4xl text-slate-100 font-medium leading-snug lg:leading-tight italic max-w-3xl drop-shadow-md">
+              <div className="w-12 h-[2px] bg-cyan-400/80 mb-6 transform origin-left group-hover:scale-x-150 transition-transform duration-500" />
+              <p className="text-xl lg:text-3xl xl:text-4xl text-slate-100 font-medium leading-snug lg:leading-tight italic max-w-3xl drop-shadow-md text-center lg:text-left">
                 "{missionVision.mission.quote}"
               </p>
             </div>
@@ -121,7 +121,7 @@ export default function MissionVisionModern() {
             style={{
               flex: hoveredPanel === 'vision' ? 1.6 : hoveredPanel === 'mission' ? 0.4 : 1,
             }}
-            className={`relative flex flex-col justify-between p-8 lg:p-16 overflow-hidden cursor-pointer group transition-all duration-500 ease-[cubic-bezier(0.25,1,0.5,1)] ${
+            className={`relative flex flex-col justify-between p-6 lg:p-16 overflow-hidden cursor-pointer group transition-all duration-500 ease-[cubic-bezier(0.25,1,0.5,1)] ${
               hoveredPanel === 'mission' ? 'opacity-50' : 'opacity-100'
             }`}
           >
@@ -133,21 +133,21 @@ export default function MissionVisionModern() {
             />
 
             {/* Top Content */}
-            <div className="relative z-10 flex items-start justify-between">
+            <div className="relative z-10 flex items-center lg:items-start justify-center lg:justify-between">
               <div className="flex items-center gap-4">
-                <h3 className="text-3xl lg:text-5xl font-black tracking-[0.05em] uppercase text-white drop-shadow-lg">
+                <h3 className="text-3xl lg:text-5xl font-black tracking-[0.05em] uppercase text-white drop-shadow-lg text-center lg:text-left">
                   VISION
                 </h3>
               </div>
             </div>
 
             <div 
-              className={`relative z-10 mt-16 lg:mt-0 transition-all duration-500 ease-out ${
+              className={`relative z-10 mt-6 lg:mt-0 flex flex-col items-center lg:items-start transition-all duration-500 ease-out ${
                 hoveredPanel === 'mission' ? 'opacity-30 translate-y-5' : 'opacity-100 translate-y-0'
               }`}
             >
-              <div className="w-12 h-[2px] bg-orange-400/80 mb-8 transform origin-left group-hover:scale-x-150 transition-transform duration-500" />
-              <p className="text-2xl lg:text-3xl xl:text-4xl text-slate-100 font-medium leading-snug lg:leading-tight italic max-w-3xl drop-shadow-md">
+              <div className="w-12 h-[2px] bg-orange-400/80 mb-6 transform origin-left group-hover:scale-x-150 transition-transform duration-500" />
+              <p className="text-xl lg:text-3xl xl:text-4xl text-slate-100 font-medium leading-snug lg:leading-tight italic max-w-3xl drop-shadow-md text-center lg:text-left">
                 "{missionVision.vision.quote}"
               </p>
             </div>

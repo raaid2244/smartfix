@@ -31,6 +31,8 @@ const ScrollExpand = ({
   children,
   className = '',
   style,
+  cutLastSeconds,
+  loop,
   ...rest
 }) => {
   const rootRef = useRef(null);
@@ -191,10 +193,10 @@ const ScrollExpand = ({
   }, [applyProgress, useWindowScroll]);
 
   const handleTimeUpdate = (e) => {
-    if (rest.cutLastSeconds && rest.cutLastSeconds > 0) {
+    if (cutLastSeconds && cutLastSeconds > 0) {
       const video = e.target;
-      if (video.duration && video.currentTime >= video.duration - rest.cutLastSeconds) {
-        if (rest.loop !== false) {
+      if (video.duration && video.currentTime >= video.duration - cutLastSeconds) {
+        if (loop !== false) {
           video.currentTime = 0;
           video.play().catch(() => {});
         } else {
@@ -217,7 +219,7 @@ const ScrollExpand = ({
         poster={poster}
         autoPlay
         muted
-        loop={rest.loop !== false}
+        loop={loop !== false}
         playsInline
         onTimeUpdate={handleTimeUpdate}
       />

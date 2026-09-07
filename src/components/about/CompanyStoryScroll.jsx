@@ -223,7 +223,7 @@ const ChapterVisual03 = ({ pathLength }) => {
   ];
 
   return (
-    <div className="relative w-full flex items-center justify-center select-none bg-transparent my-10 lg:my-0 px-6 sm:px-10">
+    <div className="relative w-full flex flex-col items-center justify-center select-none bg-transparent my-10 lg:my-0 px-6 sm:px-10">
       <motion.div 
         style={{ opacity: mapOpacity }}
         className="relative w-full max-w-[850px] aspect-[15/12] flex-shrink-0 mx-auto"
@@ -294,17 +294,17 @@ const ChapterVisual03 = ({ pathLength }) => {
                 {/* Optional Text attached to dot */}
                 {m.textAttachedTo === 'dot' && (
                   <div className="absolute top-[calc(100%+16px)] -ml-3 flex flex-col items-center justify-center whitespace-nowrap">
-                    <span className="font-sans text-[11px] sm:text-[12px] font-black tracking-widest text-slate-900 leading-none">{m.label}</span>
-                    {m.country && <span className="font-mono text-[8px] sm:text-[9px] font-bold tracking-[0.2em] uppercase mt-1.5 leading-none" style={{ color: m.countryColor || '#64748b' }}>{m.country}</span>}
+                    <span className="font-sans text-[11px] sm:text-[12px] font-black tracking-widest text-slate-900 leading-none drop-shadow-sm">{m.label}</span>
+                    {m.country && <span className="font-mono text-[8px] sm:text-[9px] font-bold tracking-[0.2em] uppercase mt-1.5 leading-none drop-shadow-sm" style={{ color: m.countryColor || '#64748b' }}>{m.country}</span>}
                   </div>
                 )}
             </div>
           </div>
         ))}
 
-        {/* Icon Circles and Text */}
+        {/* Icon Circles and Text — hidden on mobile, shown sm+ */}
         {markers.map((m) => (
-          <div key={`icon-${m.id}`} className="absolute z-10 pointer-events-none" style={{ top: m.iconTop, left: m.iconLeft }}>
+          <div key={`icon-${m.id}`} className="hidden sm:block absolute z-10 pointer-events-none" style={{ top: m.iconTop, left: m.iconLeft }}>
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex items-center justify-center">
               {/* Circle Container */}
               <div 
@@ -317,7 +317,7 @@ const ChapterVisual03 = ({ pathLength }) => {
                 <img src={m.image} alt={m.label} className="w-full h-full object-cover rounded-full" style={{ imageRendering: '-webkit-optimize-contrast' }} />
               </div>
 
-              {/* Text */}
+              {/* Text — sm+ only, to the right */}
               {m.textAttachedTo !== 'dot' && (
                 <div className="absolute left-[calc(100%+16px)] flex flex-col justify-center whitespace-nowrap items-start">
                   <span className="font-sans text-[11px] sm:text-[12px] font-black tracking-widest text-slate-900 leading-none">{m.label}</span>
@@ -328,6 +328,20 @@ const ChapterVisual03 = ({ pathLength }) => {
           </div>
         ))}
       </motion.div>
+
+      {/* Mobile-only location badges row */}
+      <div className="sm:hidden flex items-center justify-center gap-3 mt-6 flex-wrap px-2">
+        {markers.map((m) => (
+          <div key={`badge-${m.id}`} className="flex items-center gap-2 px-3 py-2 rounded-full bg-white border-2 shadow-md" style={{ borderColor: m.color }}>
+            <img src={m.image} alt={m.label} className="w-8 h-8 rounded-full object-cover flex-shrink-0" style={{ border: `2px solid ${m.color}` }} />
+            <div className="flex flex-col">
+              <span className="font-sans text-[11px] font-black tracking-widest leading-none" style={{ color: '#0f172a' }}>{m.label}</span>
+              {m.country && <span className="font-mono text-[8px] font-bold tracking-wider uppercase mt-0.5 leading-none" style={{ color: m.countryColor }}>{m.country}</span>}
+            </div>
+          </div>
+        ))}
+      </div>
+
     </div>
   );
 };

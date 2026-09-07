@@ -73,7 +73,7 @@ export default function PartnersHero() {
   return (
     <section 
       ref={sectionRef} 
-      className="relative w-full bg-slate-900 overflow-hidden text-white min-h-screen flex items-center justify-center pt-24 pb-12"
+      className="relative w-full bg-slate-900 overflow-hidden text-white min-h-[80vh] lg:min-h-screen flex items-center justify-center pt-24 pb-12"
     >
       
       {/* ── BACKGROUND IMAGE & OVERLAYS ── */}
@@ -84,13 +84,13 @@ export default function PartnersHero() {
             ref={imageRef}
             src="/partners-collaboration-bg.jpg" 
             alt="Enterprise Professionals Collaborating"
-            className="w-full h-full object-cover origin-center opacity-80"
+            className="w-full h-full object-cover object-right lg:object-center origin-center opacity-80"
           />
         </div>
         
-        {/* Dark overlay: Strongest on the left behind the text, fading to the right */}
-        <div className="absolute inset-0 bg-gradient-to-r from-slate-950 via-slate-900/80 to-transparent" />
-        <div className="absolute inset-0 bg-gradient-to-t from-slate-950/50 via-transparent to-slate-950/30" />
+        {/* Mobile: lighter overlay so image is visible; Desktop: strong left fade for text column */}
+        <div className="absolute inset-0 bg-gradient-to-r from-slate-950/80 via-slate-900/40 to-transparent lg:from-slate-950 lg:via-slate-900/80 lg:to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-slate-950/60 via-transparent to-transparent" />
       </div>
 
       {/* ── MAIN CONTENT CONTAINER ── */}
@@ -112,12 +112,12 @@ export default function PartnersHero() {
             {/* MAIN HEADING */}
             <h1 className="font-sans font-black uppercase tracking-tight leading-[0.9] flex flex-col gap-1 mb-10 xl:mb-12 w-full text-left">
               <div className="overflow-hidden pb-3 w-full">
-                <div ref={titleLine1Ref} className="text-white text-5xl sm:text-6xl md:text-7xl lg:text-[6rem] xl:text-[6.5rem] w-full">
+                <div ref={titleLine1Ref} className="text-white text-4xl sm:text-6xl md:text-7xl lg:text-[6rem] xl:text-[6.5rem] w-full">
                   WHO WE WORK
                 </div>
               </div>
               <div className="overflow-hidden pb-3 w-full">
-                <div ref={titleLine2Ref} className="logo-text-gradient text-5xl sm:text-6xl md:text-7xl lg:text-[6rem] xl:text-[6.5rem] w-full">
+                <div ref={titleLine2Ref} className="logo-text-gradient text-4xl sm:text-6xl md:text-7xl lg:text-[6rem] xl:text-[6.5rem] w-full">
                   ALONGSIDE.
                 </div>
               </div>

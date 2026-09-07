@@ -140,10 +140,10 @@ export default function ProcessSection() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="w-full h-[300vh] bg-black relative border-t border-slate-900">
+    <section ref={sectionRef} className="w-full lg:h-[300vh] bg-black relative border-t border-slate-900">
       
-      {/* Sticky Container - Natively locks to the screen while scrolling through the 300vh section */}
-      <div className="sticky top-0 w-full h-screen flex flex-col justify-center overflow-hidden">
+      {/* Sticky Container - Only sticky on desktop */}
+      <div className="lg:sticky top-0 w-full lg:h-screen flex flex-col justify-center overflow-hidden py-16 lg:py-0">
         
         {/* Subtle Background Effects */}
         <div className="absolute inset-0 bg-mesh-gradient-dark opacity-20 pointer-events-none mix-blend-screen" />
@@ -161,7 +161,7 @@ export default function ProcessSection() {
           </div>
 
           {/* Interactive Pipeline */}
-          <div ref={pipelineRef} className="relative flex flex-col lg:flex-row items-start justify-between w-full max-w-6xl mx-auto gap-12 lg:gap-0">
+          <div ref={pipelineRef} className="relative flex flex-col lg:flex-row items-start justify-between w-full max-w-6xl mx-auto gap-8 lg:gap-0">
             
             {/* The Background Line (Desktop Only) */}
             <div className="absolute top-[28px] left-[10%] right-[10%] h-1 bg-slate-900 hidden lg:block rounded-full" />
@@ -177,7 +177,7 @@ export default function ProcessSection() {
                 <div 
                   key={idx}
                   className="process-item mobile-step-node relative z-10 flex flex-col items-center flex-1 group cursor-default"
-                  data-active={idx === 0 ? "true" : "false"}
+                  data-active="true"
                   data-current={idx === 0 ? "true" : "false"}
                 >
                   {/* Node */}
@@ -192,14 +192,14 @@ export default function ProcessSection() {
                   </div>
                   
                   {/* Text Content */}
-                  <div className="mt-8 text-center px-4 lg:px-2">
+                  <div className="mt-6 lg:mt-8 text-center px-4 lg:px-2">
                     <span className={`block font-mono text-[10px] sm:text-xs font-bold tracking-widest uppercase mb-3 transition-colors duration-300 text-slate-700 ${item.activeColor}`}>
                       STEP {item.step}
                     </span>
                     <h4 className="text-lg lg:text-xl font-bold mb-4 transition-colors duration-300 text-slate-500 group-data-[active=true]:text-white">
                       {item.title}
                     </h4>
-                    <p className="text-sm leading-relaxed transition-colors duration-300 max-w-xs mx-auto text-slate-600 opacity-50 lg:opacity-100 group-data-[current=true]:text-slate-400">
+                    <p className="text-sm leading-relaxed transition-colors duration-300 max-w-xs mx-auto text-slate-400 group-data-[current=true]:text-slate-300">
                       {item.desc}
                     </p>
                   </div>

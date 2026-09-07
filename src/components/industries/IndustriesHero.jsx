@@ -1,7 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import SectionEyebrow from "../SectionEyebrow";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -71,16 +70,15 @@ export default function IndustriesHero() {
   return (
     <section
       ref={sectionRef}
-      className="relative w-full overflow-hidden"
-      style={{ minHeight: "100vh", display: "flex", alignItems: "center" }}
+      className="relative w-full overflow-hidden flex items-center lg:min-h-screen"
     >
-      {/* ═══ FULL-BLEED BACKGROUND ═══ */}
+      {/* ═══ FULL-BLEED WHITE BASE ═══ */}
       <div className="absolute inset-0 w-full h-full bg-white" />
 
-      {/* Image layer */}
+      {/* ═══ BACKGROUND IMAGE — desktop only ═══ */}
       <div
         ref={bgRef}
-        className="absolute inset-0 w-full h-full"
+        className="absolute inset-0 w-full h-full hidden lg:block"
         style={{
           backgroundImage: "url('/hero2.png')",
           backgroundSize: "cover",
@@ -89,50 +87,68 @@ export default function IndustriesHero() {
           willChange: "transform",
         }}
       />
+      {/* Desktop: white left-side fade for text column */}
+      <div className="absolute inset-0 bg-gradient-to-r from-white via-white/80 to-transparent hidden lg:block" />
+
+      {/* ═══ MOBILE IMAGE — absolute right half ═══ */}
+      <div className="lg:hidden absolute top-0 right-0 bottom-0 w-full overflow-hidden">
+        <img
+          src="/hero2.png"
+          alt=""
+          aria-hidden="true"
+          className="w-full h-full object-cover object-center"
+        />
+        {/* Fade left edge into white */}
+        <div className="absolute inset-0" style={{ background: 'linear-gradient(to right, #ffffff 0%, rgba(255,255,255,0.6) 30%, transparent 70%)' }} />
+      </div>
 
       {/* ═══ CONTENT ═══ */}
       <div
-        className="relative z-10 w-full max-w-[90rem] mx-auto px-6 lg:px-16"
-        style={{ paddingTop: "9rem", paddingBottom: "8rem" }}
+        className="relative z-10 w-full max-w-[90rem] mx-auto px-6 lg:px-16
+                   pt-28 pb-12
+                   md:pt-32 md:pb-16
+                   lg:pt-[9rem] lg:pb-[8rem]"
       >
-        {/* Text constrained to the white left zone (~38% of width) */}
-        <div className="max-w-[38%] xl:max-w-[36%] 2xl:max-w-[34%]">
+        {/* Text block — full width on mobile, 60% on tablet, 38% on desktop */}
+        <div className="max-w-full md:max-w-[60%] lg:max-w-[38%] xl:max-w-[36%] 2xl:max-w-[34%]">
 
           {/* Eyebrow */}
-          <div ref={eyebrowRef} className="flex items-center gap-4 mb-8">
-            <span className="eyebrow-left-line w-8 h-[1px] bg-blue-600 block origin-left" />
-            <span className="eyebrow-text text-[11px] font-mono font-bold tracking-[0.25em] uppercase text-slate-500">INDUSTRIES WE SERVE</span>
-            <span className="eyebrow-right-line w-8 h-[1px] bg-blue-600 block origin-left" />
+          <div ref={eyebrowRef} className="flex items-center gap-4 mb-6 md:mb-8">
+            <span className="eyebrow-left-line w-8 h-[1px] bg-blue-600 block origin-left flex-shrink-0" />
+            <span className="eyebrow-text text-[11px] font-mono font-bold tracking-[0.25em] uppercase text-slate-500 whitespace-nowrap">
+              INDUSTRIES WE SERVE
+            </span>
+            <span className="eyebrow-right-line w-8 h-[1px] bg-blue-600 block origin-left flex-shrink-0" />
           </div>
 
           {/* Main heading */}
           <h1
-            className="font-black uppercase tracking-tight leading-[0.9] mb-8"
+            className="font-black uppercase tracking-tight leading-[0.9] mb-6 md:mb-8"
             style={{ fontFamily: "'Outfit', sans-serif" }}
           >
-            <div className="overflow-hidden pb-3">
+            <div className="overflow-hidden pb-2 md:pb-3">
               <div
                 ref={titleLine1Ref}
-                className="text-slate-950"
-                style={{ fontSize: "clamp(3.2rem, 5.5vw, 5.5rem)", letterSpacing: "-0.02em" }}
+                className="text-slate-950 ind-hero-title"
+                style={{ letterSpacing: "-0.02em" }}
               >
                 TRUSTED
               </div>
             </div>
-            <div className="overflow-hidden pb-3">
+            <div className="overflow-hidden pb-2 md:pb-3">
               <div
                 ref={titleLine2Ref}
-                className="text-slate-950"
-                style={{ fontSize: "clamp(3.2rem, 5.5vw, 5.5rem)", letterSpacing: "-0.02em" }}
+                className="text-slate-950 ind-hero-title"
+                style={{ letterSpacing: "-0.02em" }}
               >
                 ACROSS
               </div>
             </div>
-            <div className="overflow-hidden pb-3">
+            <div className="overflow-hidden pb-2 md:pb-3">
               <div
                 ref={titleLine3Ref}
-                className="logo-text-gradient"
-                style={{ fontSize: "clamp(3.2rem, 5.5vw, 5.5rem)", letterSpacing: "-0.02em" }}
+                className="logo-text-gradient ind-hero-title"
+                style={{ letterSpacing: "-0.02em" }}
               >
                 SECTORS.
               </div>
@@ -142,11 +158,11 @@ export default function IndustriesHero() {
           {/* Supporting paragraph */}
           <div
             ref={paraRef}
-            className="border-l-2 border-blue-600 pl-6 ml-1"
+            className="border-l-2 border-blue-600 pl-5 md:pl-6 ml-1"
           >
             <p
               className="text-slate-600 font-light leading-relaxed"
-              style={{ fontSize: "clamp(1rem, 1.4vw, 1.2rem)", maxWidth: "38rem" }}
+              style={{ fontSize: "clamp(0.95rem, 1.4vw, 1.2rem)", maxWidth: "38rem" }}
             >
               We engineer mission-critical infrastructure tailored to the
               unique operational and compliance requirements of
@@ -155,6 +171,9 @@ export default function IndustriesHero() {
           </div>
 
         </div>
+
+
+
       </div>
     </section>
   );
