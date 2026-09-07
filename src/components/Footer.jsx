@@ -71,7 +71,7 @@ export default function Footer() {
                 Company
               </h4>
               <ul className="space-y-3.5">
-                {['Home', 'About', 'Why Us', 'Projects', 'Partners'].map((item) => (
+                {['Home', 'About', 'Projects', 'Partners'].map((item) => (
                   <li key={item}>
                     <Link
                       to={item === 'Home' ? '/' : `/${item.toLowerCase().replace(' ', '-')}`}
