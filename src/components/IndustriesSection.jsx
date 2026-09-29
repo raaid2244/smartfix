@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { ArrowRight } from 'lucide-react';
@@ -8,6 +8,7 @@ import { companyInfo } from '../data/companyData';
 gsap.registerPlugin(ScrollTrigger);
 
 export default function IndustriesSection() {
+  const navigate = useNavigate();
   const sectionRef = useRef(null);
   const leftColRef = useRef(null);
   const listRef = useRef(null);
@@ -160,6 +161,7 @@ export default function IndustriesSection() {
                   `}
                   onMouseEnter={() => setActiveRow(realIdx)}
                   onFocus={() => setActiveRow(realIdx)}
+                  onClick={() => navigate('/industries')}
                   tabIndex={0}
                 >
                   {/* Progress Indicator (Active) */}
@@ -256,6 +258,7 @@ export default function IndustriesSection() {
                   `}
                   onMouseEnter={() => setActiveRow(realIdx)}
                   onFocus={() => setActiveRow(realIdx)}
+                  onClick={() => navigate('/industries')}
                   tabIndex={0}
                 >
                   {/* Progress Indicator (Active) - Right Side */}

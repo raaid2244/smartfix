@@ -44,11 +44,10 @@ const PartnerCard = ({ partner }) => {
         </p>
 
         {/* Footer */}
-        <div className="mt-8 pt-6 border-t border-slate-100 flex items-center justify-between">
+        <div className="mt-8 pt-6 border-t border-slate-100">
           <span className="text-[10px] uppercase tracking-[0.2em] font-bold text-slate-400 group-hover:text-blue-500 transition-colors">
             Integration Partner
           </span>
-          <ArrowRight className="w-4 h-4 text-slate-300 group-hover:text-blue-500 group-hover:translate-x-1 transition-all duration-300" />
         </div>
       </div>
     </div>

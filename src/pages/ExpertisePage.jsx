@@ -11,19 +11,21 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 export default function ExpertisePage() {
   useEffect(() => {
+    // Force scroll to top first
+    window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+
     // Refresh ScrollTrigger after all elements are loaded and rendered
-    const handleRefresh = () => ScrollTrigger.refresh();
-    
-    // Initial refresh with slight delay to ensure DOM is ready
-    const timer = setTimeout(handleRefresh, 200);
-    
-    window.addEventListener('resize', handleRefresh);
-    window.addEventListener('load', handleRefresh);
+    // Use a slight delay, then re-assert scroll top afterwards
+    const timer = setTimeout(() => {
+      ScrollTrigger.refresh();
+      // Re-assert top position after refresh in case GSAP moved it
+      window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+    }, 100);
+
+    window.addEventListener('resize', () => ScrollTrigger.refresh());
 
     return () => {
       clearTimeout(timer);
-      window.removeEventListener('resize', handleRefresh);
-      window.removeEventListener('load', handleRefresh);
     };
   }, []);
   return (

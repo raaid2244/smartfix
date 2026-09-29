@@ -1,5 +1,7 @@
 import React, { useEffect } from 'react';
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import gsap from 'gsap';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import HomePage from './pages/HomePage';
@@ -11,11 +13,25 @@ import ContactPage from './pages/ContactPage';
 
 import GlobalCTA from './components/GlobalCTA';
 
-// Scroll to top helper on route navigation
+gsap.registerPlugin(ScrollTrigger);
+
+// Scroll to top on every route change, killing stale GSAP triggers
 function ScrollToTop() {
   const { pathname } = useLocation();
   useEffect(() => {
-    window.scrollTo(0, 0);
+    // 1. Instant scroll to top
+    window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+
+    // 2. Kill all stale ScrollTrigger instances from the previous page
+    ScrollTrigger.getAll().forEach((t) => t.kill());
+
+    // 3. After next frame, refresh and re-assert top position
+    const id = requestAnimationFrame(() => {
+      ScrollTrigger.refresh();
+      window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+    });
+
+    return () => cancelAnimationFrame(id);
   }, [pathname]);
   return null;
 }

@@ -51,15 +51,15 @@ const CHAPTERS = [
 /* ─── CUSTOM VISUAL GRAPHICS ─── */
 const ChapterVisual01 = ({ isActive }) => {
   return (
-    <div className="relative w-full h-48 sm:h-64 flex items-center justify-center overflow-visible bg-transparent">
+    <div className="relative w-full h-48 sm:h-64 flex items-center justify-start overflow-hidden bg-transparent">
       
       {/* Logo & Name Container */}
       <motion.div 
-        className="relative z-10 flex flex-col items-center gap-5"
+        className="relative z-10 flex flex-col items-start gap-4 pl-2"
         animate={{ scale: isActive ? 1 : 0.95, opacity: isActive ? 1 : 0.4 }}
         transition={{ duration: 0.8, ease: "easeOut" }}
       >
-        <div className="w-24 h-24 sm:w-32 sm:h-32 flex items-center justify-center">
+        <div className="w-20 h-20 sm:w-32 sm:h-32 flex items-center justify-center">
           <img 
             src={logo} 
             alt="Smart Fix Solutions" 
@@ -67,9 +67,9 @@ const ChapterVisual01 = ({ isActive }) => {
           />
         </div>
         
-        <div className="flex flex-col items-center justify-center text-center mt-2">
-          <span className="font-sans text-2xl sm:text-4xl font-black text-slate-900 tracking-tight leading-none mb-2">SMART FIX SOLUTIONS</span>
-          <span className="font-mono text-[10px] sm:text-xs font-bold tracking-[0.25em] text-slate-500 uppercase">Enterprise Security & Network</span>
+        <div className="flex flex-col items-start justify-center text-left mt-1">
+          <span className="font-sans text-lg sm:text-3xl font-black text-slate-900 tracking-tight leading-none mb-1.5">SMART FIX SOLUTIONS</span>
+          <span className="font-mono text-[9px] sm:text-[10px] font-bold tracking-[0.2em] text-slate-500 uppercase">Enterprise Security & Network</span>
         </div>
       </motion.div>
     </div>
@@ -105,7 +105,7 @@ const ChapterVisual02 = ({ pathLength }) => {
   );
 
   return (
-    <div className="relative w-[320px] h-[320px] sm:w-[380px] sm:h-[380px] md:w-[420px] md:h-[420px] lg:w-[450px] lg:h-[450px] mx-auto flex items-center justify-center select-none -translate-y-4">
+    <div className="relative w-full max-w-[280px] h-[280px] sm:max-w-[380px] sm:h-[380px] md:max-w-[420px] md:h-[420px] lg:max-w-[450px] lg:h-[450px] mx-auto flex items-center justify-center select-none -translate-y-4">
       {/* SVG Progress Ring */}
       <svg className="absolute inset-0 w-full h-full" viewBox="0 0 440 440" preserveAspectRatio="xMidYMid meet">
         <defs>
@@ -539,7 +539,7 @@ const VISUALS = [ChapterVisual01, ChapterVisual02, ChapterVisual03, ChapterVisua
 /* ─── TIMELINE NODE ─── */
 const TimelineNode = ({ chapter, index, pathLength }) => {
   const nodeRef = useRef(null);
-  const isInView = useInView(nodeRef, { margin: "-15% 0px", once: true });
+  const isInView = useInView(nodeRef, { margin: "-5% 0px", once: true });
   const isNodeActive = isInView;
 
   const Visual = VISUALS[index];
@@ -603,7 +603,7 @@ const TimelineNode = ({ chapter, index, pathLength }) => {
   };
 
   return (
-    <div ref={nodeRef} className="relative w-full flex items-center justify-center min-h-[50vh] lg:min-h-[65vh] py-16 lg:py-24">
+    <div ref={nodeRef} className="relative w-full flex items-center justify-center min-h-[50vh] lg:min-h-[65vh] py-12 lg:py-24">
       
       {/* Connector Node on Timeline Track */}
       <div className="absolute left-6 lg:left-1/2 top-1/2 -translate-y-1/2 -translate-x-1/2 w-4 h-4 z-20 flex items-center justify-center">
@@ -617,14 +617,14 @@ const TimelineNode = ({ chapter, index, pathLength }) => {
         />
       </div>
 
-      <div className="w-full max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-24 items-center pl-16 lg:pl-0">
+      <div className="w-full max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-24 items-center pl-10 pr-6 lg:px-0">
         <div className={`flex flex-col ${isEven ? 'lg:items-end text-left lg:text-right lg:order-1' : 'lg:items-start text-left lg:order-2'}`}>
           <motion.div
             className={`flex flex-col ${isEven ? 'lg:items-end' : 'lg:items-start'}`}
-            initial={{ opacity: 0, x: isEven ? -20 : 20 }}
+            initial={{ opacity: 0.6, x: 0 }}
             animate={{ 
-              opacity: isNodeActive ? 1 : 0.3,
-              x: isNodeActive ? 0 : (isEven ? -20 : 20)
+              opacity: isNodeActive ? 1 : 0.6,
+              x: 0
             }}
             transition={{ duration: 0.6 }}
           >
@@ -638,11 +638,11 @@ const TimelineNode = ({ chapter, index, pathLength }) => {
                 {isEven && <span className="hidden lg:block h-px w-10 bg-slate-200" />}
               </div>
 
-              <RevealHeading className={`text-4xl md:text-5xl lg:text-[3.5rem] font-black tracking-tighter leading-[0.95] mb-6 ${isEven ? "lg:text-right" : "lg:text-left"}`}>
+              <RevealHeading className={`text-2xl sm:text-3xl md:text-5xl lg:text-[3.5rem] font-black tracking-tighter leading-[1.05] mb-6 break-words ${isEven ? "lg:text-right" : "lg:text-left"}`}>
                 {renderHeading(chapter.tag)}
               </RevealHeading>
 
-              <p className={`text-[15.5px] text-slate-500 font-medium leading-relaxed max-w-lg section-paragraph ${isEven ? "lg:text-right lg:ml-auto" : "lg:text-left"}`}>
+              <p className={`text-sm sm:text-[15.5px] text-slate-500 font-medium leading-relaxed w-full max-w-lg break-words section-paragraph ${isEven ? "lg:text-right lg:ml-auto" : "lg:text-left"}`}>
                 {chapter.text}
               </p>
             </RevealGroup>
@@ -650,10 +650,10 @@ const TimelineNode = ({ chapter, index, pathLength }) => {
         </div>
 
         {/* Visual Side */}
-        <div className={`w-full ${index === 2 || index === 4 ? 'max-w-none lg:w-[130%] xl:w-[150%]' : 'max-w-md'} ${isEven ? 'lg:order-2' : 'lg:order-1 lg:ml-auto'}`}>
+        <div className={`w-full lg:max-w-md ${index === 2 || index === 4 ? 'lg:max-w-none lg:w-[130%] xl:w-[150%]' : ''} ${isEven ? 'lg:order-2' : 'lg:order-1 lg:ml-auto'} justify-self-start`}>
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: isNodeActive ? 1 : 0, y: isNodeActive ? 0 : 20 }}
+            initial={{ opacity: 0.5, y: 10 }}
+            animate={{ opacity: isNodeActive ? 1 : 0.5, y: isNodeActive ? 0 : 10 }}
             transition={{ duration: 0.6, delay: 0.1 }}
           >
             <Visual isActive={isNodeActive} pathLength={pathLength} />
@@ -808,7 +808,7 @@ export default function CompanyStoryScroll() {
   return (
     <section 
       ref={containerRef} 
-      className="relative min-h-[500vh] bg-white overflow-hidden"
+      className="relative bg-white overflow-hidden lg:min-h-[500vh]"
       aria-label="Our Story and Philosophy"
     >
       {/* TOP HEADER - Static */}
@@ -833,7 +833,7 @@ export default function CompanyStoryScroll() {
       <div ref={containerRef} className="relative w-full">
         <SubtleNetworkBackground scrollYProgress={scrollYProgress} />
         
-        <div className="relative max-w-7xl mx-auto px-0 sm:px-10 lg:px-16 pb-32">
+        <div className="relative max-w-7xl mx-auto px-0 sm:px-10 lg:px-16 pb-32 overflow-x-hidden">
           
           {/* The Static Central Track Line */}
           <div className="absolute left-6 lg:left-1/2 top-0 bottom-0 w-px bg-slate-200 -translate-x-1/2 z-10" />

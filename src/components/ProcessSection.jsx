@@ -164,12 +164,12 @@ export default function ProcessSection() {
           <div ref={pipelineRef} className="relative flex flex-col lg:flex-row items-start justify-between w-full max-w-6xl mx-auto gap-8 lg:gap-0">
             
             {/* The Background Line (Desktop Only) */}
-            <div className="absolute top-[28px] left-[10%] right-[10%] h-1 bg-slate-900 hidden lg:block rounded-full" />
+            <div className="absolute top-[40px] left-[10%] right-[10%] h-1 bg-slate-900 hidden lg:block rounded-full" />
             
             {/* The Active Animated Line (Desktop Only) */}
             <div 
               ref={lineRef}
-              className="absolute top-[28px] left-[10%] right-[10%] h-1 bg-[linear-gradient(to_right,#00c3ff_0%,#2563eb_33%,#f59e0b_66%,#e11d48_100%)] hidden lg:block rounded-full shadow-[0_0_15px_rgba(245,158,11,0.4)] origin-left" 
+              className="absolute top-[40px] left-[10%] right-[10%] h-1 bg-[linear-gradient(to_right,#00c3ff_0%,#2563eb_33%,#f59e0b_66%,#e11d48_100%)] hidden lg:block rounded-full shadow-[0_0_15px_rgba(245,158,11,0.4)] origin-left" 
             />
 
             {workflowSteps.map((item, idx) => {
@@ -181,7 +181,7 @@ export default function ProcessSection() {
                   data-current={idx === 0 ? "true" : "false"}
                 >
                   {/* Node */}
-                  <div className={`w-16 h-16 sm:w-20 sm:h-20 rounded-full flex items-center justify-center border-2 transition-all duration-500 bg-black relative border-slate-800 overflow-hidden ${item.activeBorder} ${item.activeShadow}`}>
+                  <div className={`w-20 h-20 sm:w-24 sm:h-24 rounded-full flex items-center justify-center border-2 transition-all duration-500 bg-black relative border-slate-800 overflow-hidden ${item.activeBorder} ${item.activeShadow}`}>
                     {/* Inner pulse ring when current */}
                     <div className={`absolute inset-0 rounded-full border ${item.pingBorder} animate-ping opacity-0 group-data-[current=true]:opacity-20 transition-opacity z-10 pointer-events-none`} />
                     <img 

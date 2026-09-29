@@ -1,10 +1,12 @@
 import React, { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { ArrowRight, ChevronDown } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 import { lpasSlides } from '../data/lpasHeroData';
 
 export default function HorizontalServices() {
   const containerRef = useRef(null);
+  const navigate = useNavigate();
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -63,7 +65,7 @@ export default function HorizontalServices() {
                     {slide.description}
                   </p>
                   
-                  <button className="group flex items-center gap-4 w-fit overflow-hidden">
+                  <button onClick={() => navigate('/expertise')} className="group flex items-center gap-4 w-fit overflow-hidden">
                     <div className="w-12 h-12 rounded-full border border-current flex items-center justify-center group-hover:bg-white group-hover:text-slate-900 transition-colors duration-300">
                       <ArrowRight className="w-5 h-5" />
                     </div>
@@ -103,7 +105,7 @@ export default function HorizontalServices() {
               <p className="text-base leading-relaxed opacity-80 mb-8">
                 {slide.description}
               </p>
-              <button className="flex items-center gap-3 w-fit">
+              <button onClick={() => navigate('/expertise')} className="flex items-center gap-3 w-fit">
                 <div className="w-10 h-10 rounded-full border border-current flex items-center justify-center">
                   <ArrowRight className="w-4 h-4" />
                 </div>

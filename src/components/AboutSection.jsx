@@ -1,37 +1,24 @@
 import React, { useRef, useEffect } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { motion, useInView } from 'framer-motion';
 
 import { RevealGroup } from './ui/RevealGroup';
 import { RevealHeading } from './ui/RevealHeading';
 import SectionEyebrow from './SectionEyebrow';
+import logoColorful from '../assets/logo-colorful-transparent.png';
 
 gsap.registerPlugin(ScrollTrigger);
 
 export default function AboutSection() {
   const sectionRef = useRef(null);
-  const rightContentRef = useRef(null);
 
   useEffect(() => {
     const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (reduced || !sectionRef.current) return;
 
     let ctx = gsap.context(() => {
-
-      // Right column blocks stagger
-      if (rightContentRef.current) {
-        const targets = gsap.utils.toArray(rightContentRef.current.children);
-        gsap.fromTo(targets,
-          { opacity: 0, x: 30 },
-          {
-            opacity: 1, x: 0, duration: 0.8, stagger: 0.15, ease: 'power2.out',
-            scrollTrigger: {
-              trigger: sectionRef.current,
-              start: 'top 70%'
-            }
-          }
-        );
-      }
+      // nothing needed here now
     }, sectionRef);
 
     return () => ctx.revert();
@@ -50,44 +37,6 @@ export default function AboutSection() {
     "From mission-critical surveillance command centers and multi-facility access management to high-capacity structured cabling and private enterprise IP networks, we engineer turnkey solutions from blueprint design to lifecycle maintenance."
   ];
 
-  const domains = [
-    {
-      num: '01',
-      name: 'PHYSICAL SECURITY',
-      color: '#00c3ff',
-      tag: 'CORE DEFENSE',
-      items: [
-        'AI-Powered CCTV Surveillance & Analytics',
-        'Enterprise Biometric & Smart Access Control',
-        'Addressable Fire Alarm & Life Safety Systems',
-        'Public Address & Voice Evacuation Networks',
-      ],
-    },
-    {
-      num: '02',
-      name: 'NETWORK INFRASTRUCTURE',
-      color: '#f59e0b',
-      tag: 'CONNECTIVITY',
-      items: [
-        'High-Density Enterprise LAN, WAN & Fiber Optics',
-        'Seamless Campus-Wide Wi-Fi & Wireless Backhauls',
-        'Encrypted Site-to-Site VPN & Zero-Trust Access',
-        'Unified IP Telephony & Voice Communication',
-      ],
-    },
-    {
-      num: '03',
-      name: 'SYSTEM INTEGRATION',
-      color: '#f97316',
-      tag: 'LIFECYCLE',
-      items: [
-        'Architectural System Design & Technical Documentation',
-        'Turnkey Equipment Supply & Precision Installation',
-        'Rigorous Testing, Multi-Point Commissioning & Sign-off',
-        '24/7 SLA-Backed AMC & Preventive Maintenance',
-      ],
-    },
-  ];
 
   return (
     <section
@@ -174,108 +123,105 @@ export default function AboutSection() {
           </div>
         </RevealGroup>
 
-        {/* ── RIGHT COLUMN: Pure Black Large Content Panel (No Grid) ── */}
-        <div
-          ref={rightContentRef}
-          className="relative overflow-hidden flex flex-col justify-between bg-black text-white p-8 sm:p-12 lg:p-14"
-          style={{ backgroundColor: '#000000' }}
-        >
-          {/* Subtle Accent Corner Lines */}
-          <span className="absolute top-0 left-0 w-12 h-12 border-t-2 border-l-2 border-cyan-400 opacity-60 pointer-events-none" />
-          <span className="absolute bottom-0 right-0 w-12 h-12 border-b-2 border-r-2 border-orange-500 opacity-60 pointer-events-none" />
+        {/* ── RIGHT COLUMN: Animated Logo Panel ── */}
+        <AnimatedLogoPanel />
 
-          {/* ── Panel Header ── */}
-          <div className="flex items-center justify-between pb-6 border-b border-neutral-800">
-            <div>
-              <div className="font-mono text-[11px] font-bold text-neutral-400 tracking-[0.25em] uppercase mb-1">
-                SYSTEM ARCHITECTURE
-              </div>
-              <div className="font-display text-xl sm:text-2xl font-black text-white tracking-wider">
-                SFS-INFRASTRUCTURE
-              </div>
-            </div>
-          </div>
-
-          {/* ── Three Large Domain Blocks ── */}
-          <div className="space-y-7 my-8">
-            {domains.map((domain, i) => (
-              <div
-                key={i}
-                className="group border-b border-neutral-800/80 pb-7 last:border-b-0 last:pb-0"
-              >
-                {/* Domain Title & Badge */}
-                <div className="flex items-center justify-between mb-3.5">
-                  <div className="flex items-center gap-3">
-                    <span
-                      className="font-mono text-sm sm:text-base font-black tracking-widest"
-                      style={{ color: domain.color }}
-                    >
-                      {domain.num}
-                    </span>
-                    <span className="block w-2.5 h-px bg-neutral-700" />
-                    <h3
-                      className="font-display text-base sm:text-lg font-black tracking-[0.10em] uppercase text-white group-hover:text-cyan-300 transition-colors duration-300"
-                    >
-                      {domain.name}
-                    </h3>
-                  </div>
-                </div>
-
-                {/* Large Service Items List */}
-                <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-2.5 pl-6 sm:pl-7">
-                  {domain.items.map((item, j) => (
-                    <li key={j} className="flex items-start gap-2.5">
-                      <span
-                        className="block w-1.5 h-1.5 rounded-full mt-2.5 flex-shrink-0"
-                        style={{ backgroundColor: domain.color }}
-                      />
-                      <span className="font-sans text-[15.5px] text-neutral-300 font-medium leading-snug">
-                        {item}
-                      </span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-          </div>
-
-          {/* ── Large Location & Global Reach Footer ── */}
-          <div className="border-t border-neutral-800 pt-7">
-            <div className="flex items-end justify-between mb-4">
-              <div>
-                <div className="font-mono text-[10px] font-bold text-neutral-400 tracking-[0.22em] uppercase mb-1">
-                  HEADQUARTERS
-                </div>
-                <div className="font-mono text-sm sm:text-[15px] font-bold text-white tracking-wide">
-                  ANNA NAGAR · CHENNAI · INDIA
-                </div>
-                <div className="font-mono text-[11px] text-neutral-500 tracking-widest mt-0.5">
-                  LAT 13.08° N · LON 80.27° E
-                </div>
-              </div>
-              <div className="text-right">
-                <div className="font-mono text-[10px] font-bold text-neutral-400 tracking-[0.22em] uppercase mb-1">
-                  GLOBAL REACH
-                </div>
-                <div className="font-mono text-lg sm:text-2xl font-black text-white tracking-widest">
-                  IN · SG · MY
-                </div>
-              </div>
-            </div>
-
-            {/* Brand Spectrum Bar */}
-            <div className="h-[4px] w-full rounded-full overflow-hidden">
-              <div
-                className="h-full w-full"
-                style={{
-                  background: 'linear-gradient(90deg, #00c3ff 0%, #2563eb 25%, #f59e0b 50%, #f97316 75%, #e11d48 100%)',
-                }}
-              />
-            </div>
-          </div>
-
-        </div>
       </div>
     </section>
+  );
+}
+
+/* ── ANIMATED LOGO PANEL ── */
+function AnimatedLogoPanel() {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: '-10%' });
+
+  return (
+    <div
+      ref={ref}
+      className="relative overflow-hidden flex items-center justify-center bg-black min-h-[380px] sm:min-h-[520px]"
+    >
+      {/* Background radial gradient */}
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,#0f172a_0%,#000000_70%)] pointer-events-none" />
+
+      {/* The Logo */}
+      <motion.div
+        className="relative z-10 flex flex-col items-center gap-6"
+        initial={{ opacity: 0, scale: 0.7, y: 30 }}
+        animate={isInView ? { opacity: 1, scale: 1, y: 0 } : {}}
+        transition={{ duration: 1, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
+      >
+        {/* Logo image with glow */}
+        <motion.div
+          className="relative w-36 h-36 sm:w-44 sm:h-44"
+          animate={{ y: [0, -10, 0] }}
+          transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
+        >
+          {/* Drop shadow glow */}
+          <div
+            className="absolute inset-0 rounded-full blur-2xl opacity-60 pointer-events-none scale-75"
+            style={{ background: 'radial-gradient(circle, #00c3ff 0%, #2563eb 40%, transparent 75%)' }}
+          />
+          <img
+            src={logoColorful}
+            alt="Smart Fix Solutions Logo"
+            className="relative z-10 w-full h-full object-contain drop-shadow-2xl"
+          />
+        </motion.div>
+
+        {/* Brand name */}
+        <motion.div
+          className="flex flex-col items-center gap-1.5 text-center"
+          initial={{ opacity: 0, y: 15 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.8, delay: 0.55, ease: [0.16, 1, 0.3, 1] }}
+        >
+          <span className="font-sans text-2xl sm:text-3xl font-black tracking-tight text-white leading-none">
+            SMART FIX
+          </span>
+          <span
+            className="font-sans text-2xl sm:text-3xl font-black tracking-tight leading-none"
+            style={{ background: 'linear-gradient(90deg, #00c3ff, #2563eb, #f59e0b, #e11d48)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}
+          >
+            SOLUTIONS
+          </span>
+          <span className="font-mono text-[10px] sm:text-xs font-bold tracking-[0.35em] text-slate-400 uppercase mt-2">
+            Enterprise Security &amp; Network
+          </span>
+        </motion.div>
+
+        {/* Animated brand spectrum bar */}
+        <motion.div
+          className="h-[3px] rounded-full overflow-hidden"
+          initial={{ width: 0, opacity: 0 }}
+          animate={isInView ? { width: 160, opacity: 1 } : {}}
+          transition={{ duration: 1, delay: 0.8, ease: [0.16, 1, 0.3, 1] }}
+          style={{ background: 'linear-gradient(90deg, #00c3ff 0%, #2563eb 25%, #f59e0b 60%, #e11d48 100%)' }}
+        />
+
+        {/* Stats row */}
+        <motion.div
+          className="flex items-center gap-8 mt-2"
+          initial={{ opacity: 0, y: 10 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.7, delay: 1, ease: 'easeOut' }}
+        >
+          {[
+            { value: '11+', label: 'Years' },
+            { value: '3', label: 'Countries' },
+            { value: '500+', label: 'Projects' },
+          ].map((stat, i) => (
+            <div key={i} className="flex flex-col items-center gap-0.5">
+              <span className="font-sans text-xl sm:text-2xl font-black text-white leading-none">
+                {stat.value}
+              </span>
+              <span className="font-mono text-[9px] font-bold tracking-[0.25em] text-slate-500 uppercase">
+                {stat.label}
+              </span>
+            </div>
+          ))}
+        </motion.div>
+      </motion.div>
+    </div>
   );
 }
