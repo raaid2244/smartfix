@@ -114,7 +114,8 @@ export default function ContactPage() {
                     <span className="text-xs font-bold text-slate-300 tracking-[0.2em] uppercase">PROJECT ENQUIRY FORM</span>
                   </div>
 
-                  <form action={`mailto:${companyInfo.contact.email}`} method="post" encType="text/plain" className="space-y-8 flex-1 flex flex-col">
+                  <form action="https://api.web3forms.com/submit" method="POST" className="space-y-8 flex-1 flex flex-col">
+                    <input type="hidden" name="access_key" value="00a7efbd-286d-46b9-9959-a2fdc112b5e4" />
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                       {/* Full Name */}
@@ -190,11 +191,11 @@ export default function ContactPage() {
                         className="relative overflow-hidden group/btn flex items-center justify-between w-full px-8 py-5 bg-blue-600 text-white font-bold text-xs tracking-[0.2em] transition-all duration-500 rounded-xl shadow-lg hover:shadow-blue-500/25"
                       >
                         <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-cyan-500 opacity-0 group-hover/btn:opacity-100 transition-opacity duration-500"></div>
-                        <span className="relative z-10">SEND ENQUIRY VIA EMAIL</span>
+                        <span className="relative z-10">SEND ENQUIRY</span>
                         <ArrowRight className="relative z-10 w-5 h-5 group-hover/btn:translate-x-2 transition-transform duration-300" />
                       </button>
                       <p className="text-[10px] text-slate-500 mt-4 text-center uppercase tracking-widest font-medium">
-                        This will open your default email client.
+                        We will get back to you shortly.
                       </p>
                     </div>
 
