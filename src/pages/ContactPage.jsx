@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ArrowRight, Mail, MapPin, Globe, Zap } from 'lucide-react';
+import { ArrowRight, Mail, MapPin, Globe, Zap, MessageCircle } from 'lucide-react';
 import { companyInfo } from '../data/companyData';
 import { RevealGroup } from '../components/ui/RevealGroup';
 import { SectionEyebrow, SectionHeading, SectionParagraph } from '../components/ui/Typography';
@@ -67,6 +67,18 @@ export default function ContactPage() {
                       <div>
                         <div className="text-sm font-bold text-white mb-1 group-hover:text-blue-400 transition-colors">Email Us</div>
                         <div className="text-slate-400 text-sm font-medium">{companyInfo.contact.email}</div>
+                      </div>
+                    </a>
+
+                    <div className="h-px bg-white/5 w-full" />
+
+                    <a href="https://wa.me/919444986836" target="_blank" rel="noopener noreferrer" className="group flex items-start gap-4 p-4 -mx-4 rounded-2xl hover:bg-white/5 border border-transparent hover:border-white/10 transition-all duration-300">
+                      <div className="w-12 h-12 bg-white/5 text-green-400 rounded-xl flex items-center justify-center shrink-0 border border-white/10 group-hover:bg-green-500/20 group-hover:border-green-500/40 group-hover:shadow-[0_0_20px_rgba(34,197,94,0.3)] transition-all duration-300 group-hover:scale-110">
+                        <MessageCircle className="w-5 h-5" />
+                      </div>
+                      <div>
+                        <div className="text-sm font-bold text-white mb-1 group-hover:text-green-400 transition-colors">WhatsApp Us</div>
+                        <div className="text-slate-400 text-sm font-medium">+91 94449 86836</div>
                       </div>
                     </a>
 

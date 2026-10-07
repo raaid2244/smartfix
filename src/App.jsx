@@ -12,6 +12,7 @@ import PartnersPage from './pages/PartnersPage';
 import ContactPage from './pages/ContactPage';
 
 import GlobalCTA from './components/GlobalCTA';
+import FloatingWhatsApp from './components/FloatingWhatsApp';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -59,6 +60,7 @@ export default function App() {
         </main>
 
         <GlobalCTA />
+        <FloatingWhatsApp />
         {/* Footer */}
         <Footer />
       </div>
